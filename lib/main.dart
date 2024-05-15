@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: IMColors.beige200),
         useMaterial3: true,
       ),
+      // home: const LandingPage(),
       home: const LandingPage(),
+      initialRoute: Routes.community,
       getPages: AppPages.pages,
     );
   }

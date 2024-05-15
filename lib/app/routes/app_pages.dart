@@ -1,4 +1,6 @@
 import 'package:impossible_flutter/app/core/core.dart';
+import 'package:impossible_flutter/app/features/community/community_binding.dart';
+import 'package:impossible_flutter/app/features/community/community_view.dart';
 import 'package:impossible_flutter/app/features/home/home_view.dart';
 import 'package:impossible_flutter/app/features/landing/landing_binding.dart';
 
@@ -11,6 +13,14 @@ class AppPages {
       page: () => const HomeView(),
       bindings: [
         LandingBinding(),
+      ],
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: Routes.community,
+      page: () => const CommunityView(),
+      bindings: [
+        CommunityBinding(),
       ],
       transition: Transition.fadeIn,
     ),

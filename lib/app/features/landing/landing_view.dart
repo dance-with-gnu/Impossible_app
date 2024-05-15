@@ -19,7 +19,7 @@ class LandingPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/images/logo_only.png",
+                  _getImgPath("logo_only.png"),
                   height: 250,
                 ),
                 const Padding(
