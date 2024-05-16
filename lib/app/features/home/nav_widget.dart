@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:impossible_flutter/app/core/core.dart';
 
-const _iconHeight = 23.0;
+const _iconHeight = 20.0;
 const TextStyle _labelStyle = TextStyle(
   fontWeight: FontWeight.bold,
-  fontSize: 11,
+  fontSize: 12,
 );
 
-const _selectedClr = Color(0x00000000);
-const _unselectedClr = Colors.white;
+const _selectedClr = IMColors.blue900;
+const _unselectedClr = IMColors.blue400;
 
 class NavWidget extends StatelessWidget {
   const NavWidget({
@@ -27,7 +26,7 @@ class NavWidget extends StatelessWidget {
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
       child: SizedBox(
-        height: 80 + MediaQuery.of(context).padding.bottom / 3,
+        height: 75 + MediaQuery.of(context).padding.bottom / 3,
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           showUnselectedLabels: false,
@@ -36,18 +35,15 @@ class NavWidget extends StatelessWidget {
           onTap: (index) {
             onChanged(index);
           },
-          backgroundColor: const Color(0xff1e1e1e),
+          backgroundColor: IMColors.beige100,
           currentIndex: selectedIdx,
-          // backgroundColor: GZColor.bgColor,
-          // unselectedItemColor: GZColor.black,
-          // selectedItemColor: GZColor.black,
           unselectedLabelStyle: _labelStyle,
           selectedLabelStyle: _labelStyle,
           items: [
             const BottomNavigationBarItem(
               tooltip: '',
               activeIcon: Padding(
-                padding: EdgeInsets.only(bottom: 5),
+                padding: EdgeInsets.only(bottom: 1),
                 child: SizedBox(
                   height: _iconHeight,
                   child: Icon(
@@ -57,7 +53,7 @@ class NavWidget extends StatelessWidget {
                 ),
               ),
               icon: Padding(
-                padding: EdgeInsets.only(bottom: 5),
+                padding: EdgeInsets.only(bottom: 1),
                 child: SizedBox(
                   height: _iconHeight,
                   child: Icon(
@@ -72,22 +68,18 @@ class NavWidget extends StatelessWidget {
             BottomNavigationBarItem(
               tooltip: '',
               activeIcon: Padding(
-                padding: const EdgeInsets.only(bottom: 5),
-                child: SizedBox(
-                    height: _iconHeight,
-                    child: SvgPicture.asset(
-                      _getImgPath('logo_only.svg'),
-                      fit: BoxFit.fitHeight,
-                    )),
+                padding: const EdgeInsets.only(bottom: 1),
+                child: Image.asset(
+                  _getImgPath("logo_only.png"),
+                  height: 15,
+                ),
               ),
               icon: Padding(
-                padding: const EdgeInsets.only(bottom: 5),
-                child: SizedBox(
-                    height: _iconHeight,
-                    child: SvgPicture.asset(
-                      _getImgPath('logo_only.svg'),
-                      fit: BoxFit.fitHeight,
-                    )),
+                padding: const EdgeInsets.only(bottom: 1),
+                child: Image.asset(
+                  _getImgPath("logo_only.png"),
+                  height: 15,
+                ),
               ),
               label: 'MAKE',
               backgroundColor: Colors.white,
@@ -95,7 +87,7 @@ class NavWidget extends StatelessWidget {
             const BottomNavigationBarItem(
               tooltip: '',
               activeIcon: Padding(
-                padding: EdgeInsets.only(bottom: 5),
+                padding: EdgeInsets.only(bottom: 1),
                 child: SizedBox(
                   height: _iconHeight,
                   child: Icon(
@@ -105,7 +97,7 @@ class NavWidget extends StatelessWidget {
                 ),
               ),
               icon: Padding(
-                padding: EdgeInsets.only(bottom: 5),
+                padding: EdgeInsets.only(bottom: 1),
                 child: SizedBox(
                   height: _iconHeight,
                   child: Icon(

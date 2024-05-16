@@ -44,8 +44,10 @@ class CommunityController extends GetxController {
       _getVideoPath("4.mp4")
     ];
     videoList.assignAll(videoPaths
-        .map((path) =>
-            VideoModel(path: path, username: 'gnu', musicname: 'music'))
+        .map((path) => VideoModel(
+            path: path,
+            username: 'soganglove',
+            musicname: 'A Pimp named Slickback'))
         .toList());
     if (videoList.isNotEmpty) {
       initializeVideoPlayer(currentIndex.value); // 현재 비디오 초기화

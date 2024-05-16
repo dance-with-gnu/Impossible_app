@@ -21,7 +21,7 @@ class HomeViewController extends GetxController {
 
   // change tab index
   void changeTabIndex(int idx) {
-    if (idx > 4) return;
+    if (idx > 3) return;
     _tabIdx = idx;
     pgController.jumpToPage(_tabIdx);
 

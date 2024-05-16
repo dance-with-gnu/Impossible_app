@@ -16,6 +16,8 @@ const String URL_PREFIX = 'http://127.0.0.1:8010';
 const String API_PREFIX = '$URL_PREFIX/api';
 const String URL_UI = '$URL_PREFIX/ui/';
 
+const List<String> qualityList = ['Low', 'Medium', 'High'];
+
 abstract class IMColors {
   static const grey = Color(0xffB2B2B2);
   static const grey2 = Color(0xffE8E8E8);

@@ -1,4 +1,5 @@
 import 'package:impossible_flutter/app/core/core.dart';
+import 'package:impossible_flutter/app/features/community/community_view.dart';
 import 'package:impossible_flutter/app/features/home/home_view.ctrl.dart';
 import 'package:impossible_flutter/app/features/home/nav_widget.dart';
 
@@ -21,7 +22,7 @@ class HomeView extends StatelessWidget {
                 controller: _.pgController,
                 physics: const NeverScrollableScrollPhysics(),
                 children: const [
-                  // LandingView(),
+                  CommunityView(),
                 ],
               ));
         });

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: const LandingPage(),
       home: const LandingPage(),
-      initialRoute: Routes.community,
+      initialRoute: Routes.home,
       getPages: AppPages.pages,
     );
   }
