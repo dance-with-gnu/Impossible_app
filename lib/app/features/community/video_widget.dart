@@ -116,7 +116,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                       height: 30,
                     ),
                     onPressed: () {
-                      // 전송 버튼 클릭 시 동작 추가
+                      // make 버튼 클릭
                     },
                   ),
                   IconButton(

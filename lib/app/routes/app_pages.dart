@@ -1,6 +1,7 @@
 import 'package:impossible_flutter/app/core/core.dart';
 import 'package:impossible_flutter/app/features/community/community_binding.dart';
 import 'package:impossible_flutter/app/features/community/community_view.dart';
+import 'package:impossible_flutter/app/features/dashboard/dashboard_binding.dart';
 import 'package:impossible_flutter/app/features/home/home_view.dart';
 
 part 'app_routes.dart';
@@ -12,6 +13,7 @@ class AppPages {
       page: () => const HomeView(),
       bindings: [
         CommunityBinding(),
+        DashboardBinding(),
       ],
       transition: Transition.fadeIn,
     ),

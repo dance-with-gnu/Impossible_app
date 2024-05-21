@@ -1,4 +1,5 @@
 import 'package:impossible_flutter/app/core/core.dart';
+import 'package:impossible_flutter/app/features/community/community_controller.dart';
 
 class HomeViewController extends GetxController {
   int _tabIdx = 0;
@@ -24,6 +25,12 @@ class HomeViewController extends GetxController {
     if (idx > 3) return;
     _tabIdx = idx;
     pgController.jumpToPage(_tabIdx);
+
+    if (_tabIdx != 0) {
+      Get.find<CommunityController>().pauseAllVideos();
+    } else {
+      Get.find<CommunityController>().resumeCurrentVideo();
+    }
 
     update();
   }

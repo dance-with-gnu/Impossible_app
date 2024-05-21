@@ -82,6 +82,10 @@ class CommunityController extends GetxController {
     });
   }
 
+  void resumeCurrentVideo() {
+    videoPlayerControllers[currentIndex.value]!.play();
+  }
+
   void disposeVideoPlayer(int index) {
     if (videoPlayerControllers.containsKey(index)) {
       videoPlayerControllers[index]!.dispose();
