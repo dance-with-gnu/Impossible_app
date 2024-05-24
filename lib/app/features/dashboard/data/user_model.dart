@@ -7,6 +7,7 @@ class UserModel {
   final String profileImageUrl;
   final List<String> videoThumbnails;
   final List<String> videoPaths;
+  final List<String> videoNames;
 
   UserModel({
     required this.videoPaths,
@@ -15,6 +16,7 @@ class UserModel {
     required this.videoCount,
     required this.profileImageUrl,
     required this.videoThumbnails,
+    required this.videoNames,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -24,6 +26,7 @@ class UserModel {
         videoCount: json['videoCount'],
         profileImageUrl: json['profileImageUrl'],
         videoThumbnails: List<String>.from(json['videoThumbnails']),
-        videoPaths: List<String>.from(json['videoPaths']));
+        videoPaths: List<String>.from(json['videoPaths']),
+        videoNames: List<String>.from(json['videoNames']));
   }
 }

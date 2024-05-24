@@ -70,15 +70,15 @@ class NavWidget extends StatelessWidget {
               activeIcon: Padding(
                 padding: const EdgeInsets.only(bottom: 1),
                 child: Image.asset(
-                  _getImgPath("logo_only.png"),
-                  height: 15,
+                  _getImgPath("plusicon_clicked.png"),
+                  height: 22,
                 ),
               ),
               icon: Padding(
                 padding: const EdgeInsets.only(bottom: 1),
                 child: Image.asset(
-                  _getImgPath("logo_only.png"),
-                  height: 15,
+                  _getImgPath("plusicon3.png"),
+                  height: 22,
                 ),
               ),
               label: 'MAKE',

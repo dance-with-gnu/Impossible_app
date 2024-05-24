@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:impossible_flutter/app/features/dashboard/dashboard_controller.dart';
 import 'package:impossible_flutter/app/features/dashboard/dashboard_video_player_widget.dart';
 import 'package:impossible_flutter/app/features/dashboard/data/user_model.dart';
 
@@ -25,9 +24,6 @@ class UserProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DashboardController dashboardController =
-        Get.find<DashboardController>();
-
     return GridView.builder(
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
@@ -46,6 +42,7 @@ class UserProfileWidget extends StatelessWidget {
               () => DashboardVideoPlayerScreen(
                 videoUrl: user.videoPaths[index],
                 heroTag: 'videoThumb$index',
+                // videoName: user.videoNames[index],
               ),
             );
           },

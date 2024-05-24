@@ -16,6 +16,7 @@ class DashboardController extends GetxController {
     profileImageUrl: '',
     videoThumbnails: [],
     videoPaths: [],
+    videoNames: [],
   ).obs;
 
   DashboardController(this.dashboardRepository);
@@ -53,6 +54,18 @@ class DashboardController extends GetxController {
       _getVideoPath("han_cat.mp4"),
       _getVideoPath("han_cat.mp4"),
     ];
+    var videoNames = [
+      "한강츄",
+      "한강츄",
+      "한강츄",
+      "한강츄",
+      "한강츄",
+      "한강츄",
+      "한강츄",
+      "한강츄",
+      "한강츄",
+      "한강츄",
+    ];
     var newUser = UserModel(
       name: 'soganglove',
       level: 5,
@@ -60,6 +73,7 @@ class DashboardController extends GetxController {
       videoThumbnails: videoThumbnails,
       videoCount: videoThumbnails.length,
       videoPaths: videoPaths,
+      videoNames: videoNames,
     );
 
     user.value = newUser;

@@ -111,8 +111,9 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                     },
                   ),
                   IconButton(
+                    // icon: Icon(Icons.plus, color: Colors.white),
                     icon: Image.asset(
-                      _getImgPath("logo_white.png"),
+                      _getImgPath("righticon1.png"),
                       height: 30,
                     ),
                     onPressed: () {

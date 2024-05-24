@@ -43,6 +43,10 @@ dependencies:
   video_player: ^2.7.2
   dropdown_button2: ^2.3.8
   page_transition: ^2.1.0
+  permission_handler: ^11.0.1
+  fluttertoast: ^8.2.5
+  path_provider: ^2.0.11
+  flutter_downloader: ^1.7.1
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +79,7 @@ flutter:
     - assets/videos/
     # - assets/icons/
     - assets/fonts/
+    - assets/images/share_icons/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
