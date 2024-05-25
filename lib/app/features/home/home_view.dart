@@ -3,6 +3,7 @@ import 'package:impossible_flutter/app/features/community/community_view.dart';
 import 'package:impossible_flutter/app/features/dashboard/dashboard_view.dart';
 import 'package:impossible_flutter/app/features/home/home_view.ctrl.dart';
 import 'package:impossible_flutter/app/features/home/nav_widget.dart';
+import 'package:impossible_flutter/app/features/pose/pose_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class HomeView extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   const CommunityView(),
+                  const PoseView(),
                   DashboardView(),
                 ],
               ));

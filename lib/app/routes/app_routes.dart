@@ -5,4 +5,5 @@ abstract class Routes {
   static const home = '/home';
   static const community = '/community';
   static const dashboard = '/dashboard';
+  static const pose = '/pose';
 }
