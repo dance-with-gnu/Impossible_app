@@ -17,6 +17,7 @@ class DashboardController extends GetxController {
     videoThumbnails: [],
     videoPaths: [],
     videoNames: [],
+    heart: 0,
   ).obs;
 
   DashboardController(this.dashboardRepository);
@@ -74,6 +75,7 @@ class DashboardController extends GetxController {
       videoCount: videoThumbnails.length,
       videoPaths: videoPaths,
       videoNames: videoNames,
+      heart: 3,
     );
 
     user.value = newUser;

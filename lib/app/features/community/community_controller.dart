@@ -47,7 +47,8 @@ class CommunityController extends GetxController {
         .map((path) => VideoModel(
             path: path,
             username: 'soganglove',
-            musicname: 'A Pimp named Slickback'))
+            musicname: 'A Pimp named Slickback',
+            heart: 3))
         .toList());
     if (videoList.isNotEmpty) {
       initializeVideoPlayer(currentIndex.value); // 현재 비디오 초기화
