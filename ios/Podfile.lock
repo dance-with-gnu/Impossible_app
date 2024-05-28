@@ -7,6 +7,8 @@ PODS:
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
+  - image_picker_ios (0.0.1):
+    - Flutter
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -21,6 +23,7 @@ DEPENDENCIES:
   - flutter_downloader (from `.symlinks/plugins/flutter_downloader/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/ios`)
@@ -38,6 +41,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   permission_handler_apple:
@@ -50,6 +55,7 @@ SPEC CHECKSUMS:
   flutter_downloader: b7301ae057deadd4b1650dc7c05375f10ff12c39
   flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
   fluttertoast: 9f2f8e81bb5ce18facb9748d7855bf5a756fe3db
+  image_picker_ios: 99dfe1854b4fa34d0364e74a78448a0151025425
   path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196

@@ -1,6 +1,15 @@
 import 'package:impossible_flutter/app/core/core.dart';
+import 'package:impossible_flutter/app/features/pose/data/pose_model.dart';
 import 'package:impossible_flutter/app/features/pose/pose_controller.dart';
+import 'package:impossible_flutter/app/features/pose/pose_image_picker_widget.dart';
+import 'package:impossible_flutter/app/features/pose/pose_video_widget.dart';
 import 'package:impossible_flutter/app/features/pose/tab_widget.dart';
+
+const TextStyle _button = TextStyle(
+  color: Colors.black,
+  fontSize: 13,
+  fontFamily: 'PretendardMedium',
+);
 
 class PoseView extends StatelessWidget {
   const PoseView({super.key});
@@ -16,16 +25,13 @@ class PoseView extends StatelessWidget {
         '반신'
       ], widgetList: [
         TabVideoWidget(
-          videoList: poseController.allVideoLists,
-          thumbnailList: poseController.allVideoThumbnails,
+          poseList: poseController.allPoseList,
         ),
         TabVideoWidget(
-          videoList: poseController.bodyVideoLists,
-          thumbnailList: poseController.bodyVideoThumbnails,
+          poseList: poseController.bodyPoseList,
         ),
         TabVideoWidget(
-          videoList: poseController.halfBodyVideoLists,
-          thumbnailList: poseController.halfBodyVideoThumbnails,
+          poseList: poseController.halfPoseList,
         ),
       ]),
     );
@@ -33,11 +39,9 @@ class PoseView extends StatelessWidget {
 }
 
 class TabVideoWidget extends StatelessWidget {
-  const TabVideoWidget(
-      {super.key, required this.videoList, required this.thumbnailList});
+  const TabVideoWidget({super.key, required this.poseList});
 
-  final List<String> videoList;
-  final List<String> thumbnailList;
+  final List<PoseModel> poseList;
 
   @override
   Widget build(BuildContext context) {
@@ -60,45 +64,80 @@ class TabVideoWidget extends StatelessWidget {
                 )),
           ],
         ),
-        GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-          shrinkWrap: true,
-          physics: const BouncingScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 150, // Maximum width of each grid item
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 4,
-            childAspectRatio: 0.75, // Aspect ratio to make height longer
+        Expanded(
+          child: GridView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 150, // Maximum width of each grid item
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 4,
+              childAspectRatio: 0.75, // Aspect ratio to make height longer
+            ),
+            itemCount: poseList.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  _showVideoDialog(context, poseList[index].poseVideoPath);
+                },
+                child: Image.asset(
+                  poseList[index].poseThumbnail,
+                  fit: BoxFit.cover,
+                ),
+              );
+            },
           ),
-          itemCount: videoList.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                _showImageDialog(context, thumbnailList[index]);
-              },
-              child: Image.asset(
-                thumbnailList[index],
-                fit: BoxFit.cover,
-              ),
-            );
-          },
         ),
       ],
     );
   }
 }
 
-void _showImageDialog(BuildContext context, String imagePath) {
+void _showVideoDialog(BuildContext context, String videoPath) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return Dialog(
-        child: SizedBox(
-          // width: MediaQuery.of(context).size.width * 0.9,
-          // height: MediaQuery.of(context).size.height * 0.8,
-          child: Image.asset(
-            imagePath,
-            fit: BoxFit.cover,
+        child: AspectRatio(
+          aspectRatio: 9 / 16,
+          child: Stack(
+            children: [
+              PoseVideoWidget(
+                videoUrl: videoPath,
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: TextButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(IMColors.beige200)),
+                    onPressed: () {
+                      Get.to(
+                        transition: Transition.fade,
+                        () => const PoseImagePickerWidget(),
+                      );
+                    },
+                    child: const Text(
+                      "Select",
+                      style: _button,
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       );

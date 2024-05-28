@@ -1,15 +1,115 @@
+import 'package:impossible_flutter/app/features/pose/data/pose_model.dart';
+
 class PoseRepository {
-  // // TODO api받아오기
-  // final String apiUrl = '';
+  List<PoseModel> getBodyPoseList() {
+    return [
+      PoseModel(
+        poseId: 0,
+        poseCategoryId: 0,
+        poseName: "1",
+        poseThumbnail: _getImgPath("thumbnail1.jpeg"),
+        poseDescription: "",
+        poseVideoPath: _getVideoPath("han_cat.mp4"),
+        poseViews: 0,
+      ),
+      PoseModel(
+        poseId: 0,
+        poseCategoryId: 0,
+        poseName: "1",
+        poseThumbnail: _getImgPath("thumbnail1.jpeg"),
+        poseDescription: "",
+        poseVideoPath: _getVideoPath("han_cat.mp4"),
+        poseViews: 0,
+      ),
+      PoseModel(
+        poseId: 0,
+        poseCategoryId: 0,
+        poseName: "1",
+        poseThumbnail: _getImgPath("thumbnail1.jpeg"),
+        poseDescription: "",
+        poseVideoPath: _getVideoPath("han_cat.mp4"),
+        poseViews: 0,
+      ),
+      PoseModel(
+        poseId: 0,
+        poseCategoryId: 0,
+        poseName: "1",
+        poseThumbnail: _getImgPath("thumbnail1.jpeg"),
+        poseDescription: "",
+        poseVideoPath: _getVideoPath("han_cat.mp4"),
+        poseViews: 0,
+      ),
+      PoseModel(
+        poseId: 0,
+        poseCategoryId: 0,
+        poseName: "1",
+        poseThumbnail: _getImgPath("thumbnail1.jpeg"),
+        poseDescription: "",
+        poseVideoPath: _getVideoPath("han_cat.mp4"),
+        poseViews: 0,
+      ),
+      PoseModel(
+        poseId: 0,
+        poseCategoryId: 0,
+        poseName: "1",
+        poseThumbnail: _getImgPath("thumbnail1.jpeg"),
+        poseDescription: "",
+        poseVideoPath: _getVideoPath("han_cat.mp4"),
+        poseViews: 0,
+      ),
+      PoseModel(
+        poseId: 0,
+        poseCategoryId: 0,
+        poseName: "1",
+        poseThumbnail: _getImgPath("thumbnail1.jpeg"),
+        poseDescription: "",
+        poseVideoPath: _getVideoPath("han_cat.mp4"),
+        poseViews: 0,
+      ),
+    ];
+  }
 
-  // Future<List<VideoModel>> loadingVideos() async {
-  //   final response = await http.get(Uri.parse(apiUrl));
+  List<PoseModel> getHalfPoseList() {
+    return [
+      PoseModel(
+        poseId: 0,
+        poseCategoryId: 1,
+        poseName: "2",
+        poseThumbnail: _getImgPath("thumbnail4.jpeg"),
+        poseDescription: "",
+        poseVideoPath: _getVideoPath("han_cat.mp4"),
+        poseViews: 0,
+      ),
+      PoseModel(
+        poseId: 0,
+        poseCategoryId: 1,
+        poseName: "2",
+        poseThumbnail: _getImgPath("thumbnail4.jpeg"),
+        poseDescription: "",
+        poseVideoPath: _getVideoPath("han_cat.mp4"),
+        poseViews: 0,
+      ),
+      PoseModel(
+        poseId: 0,
+        poseCategoryId: 1,
+        poseName: "2",
+        poseThumbnail: _getImgPath("thumbnail4.jpeg"),
+        poseDescription: "",
+        poseVideoPath: _getVideoPath("han_cat.mp4"),
+        poseViews: 0,
+      ),
+      PoseModel(
+        poseId: 0,
+        poseCategoryId: 1,
+        poseName: "2",
+        poseThumbnail: _getImgPath("thumbnail4.jpeg"),
+        poseDescription: "",
+        poseVideoPath: _getVideoPath("han_cat.mp4"),
+        poseViews: 0,
+      ),
+    ];
+  }
 
-  //   if (response.statusCode == 200) {
-  //     List<dynamic> data = json.decode(response.body);
-  //     return data.map((json) => VideoModel.fromJson(json)).toList();
-  //   } else {
-  //     throw Exception('Failed to load videos');
-  //   }
-  // }
+  String _getImgPath(String name) => 'assets/images/$name';
+  String _getVideoPath(String name) => 'assets/videos/$name';
 }

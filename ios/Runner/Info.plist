@@ -26,6 +26,10 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>We need your permission to use your camera for image picker plugin</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need your permission to use your microphone for audio recording</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>We need your permission to save videos to your photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
