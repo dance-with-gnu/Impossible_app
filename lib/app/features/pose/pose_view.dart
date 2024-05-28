@@ -79,7 +79,8 @@ class TabVideoWidget extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  _showVideoDialog(context, poseList[index].poseVideoPath);
+                  _showVideoDialog(context, poseList[index].poseVideoPath,
+                      poseList[index].poseCategoryId);
                 },
                 child: Image.asset(
                   poseList[index].poseThumbnail,
@@ -94,7 +95,8 @@ class TabVideoWidget extends StatelessWidget {
   }
 }
 
-void _showVideoDialog(BuildContext context, String videoPath) {
+void _showVideoDialog(
+    BuildContext context, String videoPath, int poseCategory) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -127,11 +129,13 @@ void _showVideoDialog(BuildContext context, String videoPath) {
                     onPressed: () {
                       Get.to(
                         transition: Transition.fade,
-                        () => const PoseImagePickerWidget(),
+                        () => PoseImagePickerWidget(
+                          poseCategory: poseCategory,
+                        ),
                       );
                     },
                     child: const Text(
-                      "Select",
+                      "선택",
                       style: _button,
                     ),
                   ),
