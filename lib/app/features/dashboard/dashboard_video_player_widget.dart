@@ -65,7 +65,7 @@ class _DashboardVideoPlayerScreenState
     send.send([id, status, progress]);
   }
 
-  void _togglePlayPause() {
+  void togglePlayPause() {
     setState(() {
       if (_controller.value.isPlaying) {
         _controller.pause();
@@ -109,7 +109,7 @@ class _DashboardVideoPlayerScreenState
           tag: widget.heroTag,
           child: _controller.value.isInitialized
               ? GestureDetector(
-                  onTap: _togglePlayPause,
+                  onTap: togglePlayPause,
                   child: Stack(
                     children: [
                       AspectRatio(
