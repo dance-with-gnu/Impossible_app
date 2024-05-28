@@ -3,6 +3,7 @@
 import 'package:impossible_flutter/app/core/core.dart';
 import 'package:impossible_flutter/app/features/dashboard/dashboard_controller.dart';
 import 'package:impossible_flutter/app/features/dashboard/user_profile_widget.dart';
+import 'package:impossible_flutter/app/features/home/home_view.ctrl.dart';
 
 const TextStyle _text = TextStyle(
   color: Colors.white,
@@ -33,7 +34,7 @@ class DashboardView extends StatelessWidget {
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -48,6 +49,7 @@ class DashboardView extends StatelessWidget {
         hoverColor: IMColors.blue900,
         onPressed: () {
           // Add video creation functionality
+          Get.find<HomeViewController>().changeTabIndex(1);
         },
         icon: const Icon(Icons.videocam, color: Colors.white),
         label: const Text('Make Video', style: _text),

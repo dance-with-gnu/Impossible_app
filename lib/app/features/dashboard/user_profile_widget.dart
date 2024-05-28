@@ -7,7 +7,7 @@ import 'package:impossible_flutter/app/features/dashboard/data/user_model.dart';
 
 const TextStyle _name = TextStyle(
   color: Colors.black,
-  fontSize: 24,
+  fontSize: 25,
   fontFamily: 'PretendardBold',
 );
 
@@ -81,23 +81,25 @@ class UserProfileInfoWidget extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(width: 20),
+          const SizedBox(width: 25),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 user.name,
                 style: _name,
               ),
-              const SizedBox(height: 5),
-              Text(
-                'Level ${user.level}',
-                style: _text,
-              ),
+              const SizedBox(height: 12),
+              // Text(
+              //   'Level ${user.level}',
+              //   style: _text,
+              // ),
               Text(
                 '${user.videoCount} videos',
                 style: _text,
               ),
+              const SizedBox(height: 10),
             ],
           ),
         ],
