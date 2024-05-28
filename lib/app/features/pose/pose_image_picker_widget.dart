@@ -29,7 +29,10 @@ TextStyle _selectButton = const TextStyle(
 
 class PoseImagePickerWidget extends StatefulWidget {
   final int poseCategory;
-  const PoseImagePickerWidget({super.key, required this.poseCategory});
+  final int poseId;
+
+  const PoseImagePickerWidget(
+      {super.key, required this.poseCategory, required this.poseId});
 
   @override
   State<PoseImagePickerWidget> createState() => _PoseImagePickerWidgetState();

@@ -48,6 +48,8 @@ class CommunityController extends GetxController {
             path: path,
             username: 'soganglove',
             musicname: 'A Pimp named Slickback',
+            poseId: 1,
+            poseCategoryId: 1,
             heart: 3))
         .toList());
     if (videoList.isNotEmpty) {

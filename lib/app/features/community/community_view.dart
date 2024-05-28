@@ -29,6 +29,8 @@ class CommunityView extends StatelessWidget {
                     videoPlayerController:
                         controller.videoPlayerControllers[index]!,
                     musicName: video.musicname,
+                    poseCategory: video.poseCategoryId,
+                    poseId: video.poseId,
                   )
                 : const Center(child: CircularProgressIndicator()));
           },

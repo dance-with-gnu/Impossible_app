@@ -1,4 +1,5 @@
 import 'package:impossible_flutter/app/core/core.dart';
+import 'package:impossible_flutter/app/features/pose/pose_image_picker_widget.dart';
 import 'package:video_player/video_player.dart';
 
 const TextStyle _name = TextStyle(
@@ -21,13 +22,17 @@ class VideoPlayerWidget extends StatefulWidget {
   final String username;
   final String musicName;
   final RxBool isInitialized;
+  final int poseCategory;
+  final int poseId;
 
   const VideoPlayerWidget(
       {super.key,
       required this.videoPlayerController,
       required this.username,
       required this.isInitialized,
-      required this.musicName});
+      required this.musicName,
+      required this.poseCategory,
+      required this.poseId});
 
   @override
   _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
@@ -118,6 +123,13 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                     ),
                     onPressed: () {
                       // make 버튼 클릭
+                      Get.to(
+                        transition: Transition.fade,
+                        () => PoseImagePickerWidget(
+                          poseCategory: widget.poseCategory,
+                          poseId: widget.poseId,
+                        ),
+                      );
                     },
                   ),
                   IconButton(
