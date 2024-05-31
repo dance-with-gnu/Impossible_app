@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:impossible_flutter/app/core/core.dart';
+import 'package:impossible_flutter/app/features/pose/pose_image_controller.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 TextStyle _posetitle = const TextStyle(
   color: IMColors.blue1100,
@@ -26,6 +28,9 @@ TextStyle _selectButton = const TextStyle(
   fontSize: 13,
   fontFamily: 'PretendardMedium',
 );
+
+const _selectedColor = IMColors.blue1000;
+const _unselectedColor = IMColors.blue600;
 
 class PoseImagePickerWidget extends StatefulWidget {
   final int poseCategory;
@@ -130,6 +135,8 @@ class _PoseImagePickerWidgetState extends State<PoseImagePickerWidget> {
                       ),
                       onPressed: () {
                         // 생성 api호출
+                        _showBottomSheet(
+                            context, widget.poseCategory, widget.poseId);
                       },
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -197,4 +204,59 @@ class _PoseImagePickerWidgetState extends State<PoseImagePickerWidget> {
       ),
     );
   }
+}
+
+void _showBottomSheet(BuildContext context, int poseCategory, int poseId) {
+  final PoseImageController poseController = Get.put(PoseImageController());
+
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    builder: (BuildContext context) {
+      return Container(
+        width: double.infinity,
+        height: MediaQuery.of(context).size.height / 2,
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              "영상 품질을 선택해주세요",
+              style: _title,
+            ),
+            ToggleSwitch(
+              minWidth: 90.0,
+              initialLabelIndex: poseController.poseIndex.value,
+              cornerRadius: 20.0,
+              activeFgColor: Colors.white,
+              inactiveBgColor: Colors.grey,
+              inactiveFgColor: Colors.white,
+              totalSwitches: 3,
+              labels: const ['하', '중', '상'],
+              activeBgColors: const [
+                [IMColors.blue600],
+                [IMColors.blue600],
+                [IMColors.blue600],
+              ],
+              onToggle: (index) {
+                poseController.updateIndex(index!);
+                poseController.updateWaitTime([5, 15, 45][index]);
+              },
+            ),
+            Obx(() => Text(
+                  "예상 생성시간: ${poseController.waitTime.value}분",
+                  style: _title,
+                )),
+            ElevatedButton(
+              onPressed: () {
+                // 생성 api 호출
+                Navigator.of(context).pop();
+              },
+              child: Text("생성하기", style: _selectButton),
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }

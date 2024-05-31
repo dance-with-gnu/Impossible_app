@@ -1,4 +1,5 @@
 import 'package:impossible_flutter/app/core/core.dart';
+import 'package:impossible_flutter/app/features/community/community_controller.dart';
 import 'package:impossible_flutter/app/features/pose/pose_image_picker_widget.dart';
 import 'package:video_player/video_player.dart';
 
@@ -123,13 +124,17 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                     ),
                     onPressed: () {
                       // make 버튼 클릭
+                      Get.find<CommunityController>().pauseCurrentVideo();
                       Get.to(
                         transition: Transition.fade,
                         () => PoseImagePickerWidget(
                           poseCategory: widget.poseCategory,
                           poseId: widget.poseId,
                         ),
-                      );
+                      )!
+                          .then((_) {
+                        Get.find<CommunityController>().resumeCurrentVideo();
+                      });
                     },
                   ),
                   IconButton(

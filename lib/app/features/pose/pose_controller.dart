@@ -12,6 +12,7 @@ class PoseController extends GetxController {
 
   final List<PoseModel> bodyPoseList = <PoseModel>[].obs;
   final List<PoseModel> halfPoseList = <PoseModel>[].obs;
+  final RxInt waitTime = 0.obs;
 
   @override
   void onInit() {
@@ -23,5 +24,9 @@ class PoseController extends GetxController {
     bodyPoseList.assignAll(repository.getBodyPoseList());
     halfPoseList.assignAll(repository.getHalfPoseList());
     allPoseList = [...bodyPoseList, ...halfPoseList].obs;
+  }
+
+  void updateWaitTime(int time) {
+    waitTime.value = time;
   }
 }

@@ -127,6 +127,7 @@ void _showVideoDialog(
                         backgroundColor:
                             MaterialStateProperty.all(IMColors.beige200)),
                     onPressed: () {
+                      Navigator.of(context).pop();
                       Get.to(
                         transition: Transition.fade,
                         () => PoseImagePickerWidget(

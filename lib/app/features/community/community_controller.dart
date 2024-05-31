@@ -85,6 +85,10 @@ class CommunityController extends GetxController {
     });
   }
 
+  void pauseCurrentVideo() {
+    videoPlayerControllers[currentIndex.value]!.pause();
+  }
+
   void resumeCurrentVideo() {
     videoPlayerControllers[currentIndex.value]!.play();
   }
