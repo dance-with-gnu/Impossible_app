@@ -7,6 +7,11 @@ class PoseImageController extends GetxController {
 
   final RxInt waitTime = 0.obs;
   final RxInt poseIndex = 1.obs;
+  final RxBool isDeveloper = false.obs;
+  // 개발자 모드 fps controller
+  final fpsController = TextEditingController(text: '100');
+  // 개발자 모드 step controller
+  final stepController = TextEditingController(text: '30');
 
   @override
   void onInit() {

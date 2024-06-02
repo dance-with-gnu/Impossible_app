@@ -214,50 +214,132 @@ void _showBottomSheet(BuildContext context, int poseCategory, int poseId) {
     context: context,
     isScrollControlled: true,
     builder: (BuildContext context) {
-      return Container(
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height / 2,
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              "영상 품질을 선택해주세요",
-              style: _title,
-            ),
-            ToggleSwitch(
-              minWidth: 90.0,
-              initialLabelIndex: poseController.poseIndex.value,
-              cornerRadius: 20.0,
-              activeFgColor: Colors.white,
-              inactiveBgColor: Colors.grey,
-              inactiveFgColor: Colors.white,
-              totalSwitches: 3,
-              labels: const ['하', '중', '상'],
-              activeBgColors: const [
-                [IMColors.blue600],
-                [IMColors.blue600],
-                [IMColors.blue600],
-              ],
-              onToggle: (index) {
-                poseController.updateIndex(index!);
-                poseController.updateWaitTime([5, 15, 45][index]);
-              },
-            ),
-            Obx(() => Text(
-                  "예상 생성시간: ${poseController.waitTime.value}분",
-                  style: _title,
-                )),
-            ElevatedButton(
+      return Stack(
+        children: [
+          Obx(
+            () => Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height / 2,
+                padding: const EdgeInsets.all(20),
+                child: poseController.isDeveloper.value
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          // Text(
+                          //   "영상 품질을 선택해주세요",
+                          //   style: _title,
+                          // ),
+                          // ToggleSwitch(
+                          //   minWidth: 90.0,
+                          //   initialLabelIndex: poseController.poseIndex.value,
+                          //   cornerRadius: 20.0,
+                          //   activeFgColor: Colors.white,
+                          //   inactiveBgColor: Colors.grey,
+                          //   inactiveFgColor: Colors.white,
+                          //   totalSwitches: 3,
+                          //   labels: const ['하', '중', '상'],
+                          //   activeBgColors: const [
+                          //     [IMColors.blue600],
+                          //     [IMColors.blue600],
+                          //     [IMColors.blue600],
+                          //   ],
+                          //   onToggle: (index) {
+                          //     poseController.updateIndex(index!);
+                          //     poseController.updateWaitTime([5, 15, 45][index]);
+                          //   },
+                          // ),
+                          Text("Fps", style: _title),
+                          TextField(
+                            controller: poseController.fpsController,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Fps',
+                              isDense: true,
+                              contentPadding: EdgeInsets.all(8),
+                            ),
+                          ),
+                          Text("Steps", style: _title),
+                          TextField(
+                            controller: poseController.stepController,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Steps',
+                              isDense: true,
+                              contentPadding: EdgeInsets.all(8),
+                            ),
+                          ),
+                          Obx(() => Text(
+                                "예상 생성시간: ${poseController.waitTime.value}분",
+                                style: _title,
+                              )),
+                          ElevatedButton(
+                            onPressed: () {
+                              // 특정 경로 이름을 가진 페이지까지 팝
+                              Navigator.of(context)
+                                  .popUntil(ModalRoute.withName('/home'));
+                              Get.find<HomeViewController>().changeTabIndex(2);
+                              print(poseController.fpsController.text);
+                              print(poseController.stepController.text);
+                            },
+                            child: Text("생성하기", style: _selectButton),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            "영상 품질을 선택해주세요",
+                            style: _title,
+                          ),
+                          ToggleSwitch(
+                            minWidth: 90.0,
+                            initialLabelIndex: poseController.poseIndex.value,
+                            cornerRadius: 20.0,
+                            activeFgColor: Colors.white,
+                            inactiveBgColor: Colors.grey,
+                            inactiveFgColor: Colors.white,
+                            totalSwitches: 3,
+                            labels: const ['하', '중', '상'],
+                            activeBgColors: const [
+                              [IMColors.blue600],
+                              [IMColors.blue600],
+                              [IMColors.blue600],
+                            ],
+                            onToggle: (index) {
+                              poseController.updateIndex(index!);
+                              poseController.updateWaitTime([5, 15, 45][index]);
+                            },
+                          ),
+                          Obx(() => Text(
+                                "예상 생성시간: ${poseController.waitTime.value}분",
+                                style: _title,
+                              )),
+                          ElevatedButton(
+                            onPressed: () {
+                              // 특정 경로 이름을 가진 페이지까지 팝
+                              Navigator.of(context)
+                                  .popUntil(ModalRoute.withName('/home'));
+                              Get.find<HomeViewController>().changeTabIndex(2);
+                            },
+                            child: Text("생성하기", style: _selectButton),
+                          ),
+                        ],
+                      )),
+          ),
+          Positioned(
+            top: 10,
+            right: 10,
+            child: IconButton(
+              icon: const Icon(Icons.developer_mode), // 적절한 아이콘 선택
               onPressed: () {
-                // 특정 경로 이름을 가진 페이지까지 팝
-                Navigator.of(context).popUntil(ModalRoute.withName('/home'));
-                Get.find<HomeViewController>().changeTabIndex(2);
+                // 토글 버튼 클릭 시 수행할 작업
+                poseController.isDeveloper.value =
+                    !poseController.isDeveloper.value;
               },
-              child: Text("생성하기", style: _selectButton),
             ),
-          ],
-        ),
+          ),
+        ],
       );
     },
   );
