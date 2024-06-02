@@ -12,6 +12,7 @@ class CommunityController extends GetxController {
   RxBool isInitialized = false.obs; // 초기화 상태를 나타내는 변수 추가
   final CommunityRepository repository;
   Map<int, VideoPlayerController> videoPlayerControllers = {};
+  RxList<bool> isLiked = <bool>[].obs;
 
   CommunityController({required this.repository});
 
@@ -27,15 +28,6 @@ class CommunityController extends GetxController {
     print("getVideoPlayer OK");
   }
 
-  // void loadVideos() async {
-  //   try {
-  //     var videos = await repository.loadingVideos();
-  //     videoList.assignAll(videos);
-  //   } catch (e) {
-  //     Get.snackbar('Error', e.toString());
-  //   }
-  // }
-
   void loadVideoList() async {
     final videoPaths = [
       _getVideoPath("1.mp4"),
@@ -45,13 +37,18 @@ class CommunityController extends GetxController {
     ];
     videoList.assignAll(videoPaths
         .map((path) => VideoModel(
-            path: path,
-            username: 'soganglove',
-            musicname: 'A Pimp named Slickback',
-            poseId: 1,
-            poseCategoryId: 1,
-            heart: 3))
+              path: path,
+              username: 'soganglove',
+              musicname: 'A Pimp named Slickback',
+              poseId: 1,
+              poseCategoryId: 1,
+              heart: 3,
+              isLiked: true,
+            ))
         .toList());
+
+    isLiked.assignAll(videoList.map((video) => video.isLiked).toList());
+
     if (videoList.isNotEmpty) {
       initializeVideoPlayer(currentIndex.value); // 현재 비디오 초기화
       if (currentIndex.value + 1 < videoList.length) {
@@ -114,6 +111,20 @@ class CommunityController extends GetxController {
       initializeVideoPlayer(index - 1); // 이전 비디오 초기화
     }
     lastIndex = index;
+  }
+
+  void unlikeVideo() {
+    videoList[currentIndex.value].isLiked = false;
+    isLiked[currentIndex.value] = false;
+    videoList[currentIndex.value].heart -= 1;
+    update();
+  }
+
+  void likeVideo() {
+    videoList[currentIndex.value].isLiked = true;
+    isLiked[currentIndex.value] = true;
+    videoList[currentIndex.value].heart += 1;
+    update();
   }
 
   @override

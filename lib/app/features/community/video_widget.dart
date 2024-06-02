@@ -16,6 +16,12 @@ const TextStyle _music = TextStyle(
   fontFamily: 'PretendardMedium',
 );
 
+const TextStyle _popupText = TextStyle(
+  color: Colors.black,
+  fontSize: 13,
+  fontFamily: 'PretendardMedium',
+);
+
 _getImgPath(String name) => 'assets/images/$name';
 
 class VideoPlayerWidget extends StatefulWidget {
@@ -25,6 +31,9 @@ class VideoPlayerWidget extends StatefulWidget {
   final RxBool isInitialized;
   final int poseCategory;
   final int poseId;
+  final bool isLiked;
+  final int index;
+  final int heart;
 
   const VideoPlayerWidget(
       {super.key,
@@ -33,7 +42,10 @@ class VideoPlayerWidget extends StatefulWidget {
       required this.isInitialized,
       required this.musicName,
       required this.poseCategory,
-      required this.poseId});
+      required this.poseId,
+      required this.isLiked,
+      required this.index,
+      required this.heart});
 
   @override
   _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
@@ -56,6 +68,11 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
         _controller.play();
       }
     });
+  }
+
+  void _onMenuSelected(String value) {
+    // 선택한 값을 처리하는 로직 추가
+    print('Selected: $value');
   }
 
   @override
@@ -111,19 +128,35 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.favorite, color: Colors.white),
+                    padding: EdgeInsets.zero, // 패딩 설정
+                    visualDensity: const VisualDensity(
+                      vertical: -4,
+                    ),
+                    constraints: const BoxConstraints(), // constraints
+                    icon: widget.isLiked
+                        ? const Icon(Icons.favorite, color: Colors.white)
+                        : const Icon(Icons.favorite_border,
+                            color: Colors.white),
+
                     onPressed: () {
                       // 하트 버튼 클릭 시 동작 추가
+                      if (widget.isLiked) {
+                        Get.find<CommunityController>().unlikeVideo();
+                      } else {
+                        Get.find<CommunityController>().likeVideo();
+                      }
                     },
                   ),
+                  Text(
+                    widget.heart.toString(),
+                    style: _music,
+                  ),
                   IconButton(
-                    // icon: Icon(Icons.plus, color: Colors.white),
                     icon: Image.asset(
                       _getImgPath("righticon1.png"),
                       height: 30,
                     ),
                     onPressed: () {
-                      // make 버튼 클릭
                       Get.find<CommunityController>().pauseCurrentVideo();
                       Get.to(
                         transition: Transition.fade,
@@ -137,10 +170,24 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                       });
                     },
                   ),
-                  IconButton(
+                  PopupMenuButton<String>(
                     icon: const Icon(Icons.more_vert, color: Colors.white),
-                    onPressed: () {
-                      // 설정 버튼 클릭 시 동작 추가
+                    onSelected: _onMenuSelected,
+                    itemBuilder: (BuildContext context) {
+                      return <PopupMenuEntry<String>>[
+                        const PopupMenuItem<String>(
+                          value: '최신',
+                          child: Text('최신 순', style: _popupText),
+                        ),
+                        const PopupMenuItem<String>(
+                          value: '좋아요',
+                          child: Text('좋아요 순', style: _popupText),
+                        ),
+                        const PopupMenuItem<String>(
+                          value: '조회수',
+                          child: Text('조회수 순', style: _popupText),
+                        ),
+                      ];
                     },
                   ),
                 ],

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:impossible_flutter/app/core/core.dart';
+import 'package:impossible_flutter/app/features/home/home_view.ctrl.dart';
 import 'package:impossible_flutter/app/features/pose/pose_image_controller.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -249,8 +250,9 @@ void _showBottomSheet(BuildContext context, int poseCategory, int poseId) {
                 )),
             ElevatedButton(
               onPressed: () {
-                // 생성 api 호출
-                Navigator.of(context).pop();
+                // 특정 경로 이름을 가진 페이지까지 팝
+                Navigator.of(context).popUntil(ModalRoute.withName('/home'));
+                Get.find<HomeViewController>().changeTabIndex(2);
               },
               child: Text("생성하기", style: _selectButton),
             ),

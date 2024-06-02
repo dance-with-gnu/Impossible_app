@@ -2,9 +2,10 @@ class VideoModel {
   final String path;
   final String username;
   final String musicname;
-  final int heart;
+  int heart;
   final int poseId;
   final int poseCategoryId;
+  bool isLiked;
 
   VideoModel(
       {required this.path,
@@ -12,7 +13,8 @@ class VideoModel {
       required this.musicname,
       required this.heart,
       required this.poseId,
-      required this.poseCategoryId});
+      required this.poseCategoryId,
+      required this.isLiked});
 
   factory VideoModel.fromJson(Map<String, dynamic> json) {
     return VideoModel(
@@ -22,6 +24,7 @@ class VideoModel {
       heart: json['heart'],
       poseId: json['poseId'],
       poseCategoryId: json['poseCategoryId'],
+      isLiked: json['isLiked'],
     );
   }
 }
